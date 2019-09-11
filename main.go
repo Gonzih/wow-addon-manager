@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sync"
 )
 
 var addonsDir string
@@ -13,7 +14,6 @@ var debug bool
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
-	flag.Parse()
 }
 
 type downloadedAddon struct {
@@ -29,6 +29,8 @@ func must(err error) {
 }
 
 func main() {
+	flag.Parse()
+
 	cfg, err := ParseConfig(fmt.Sprintf("%s/addons.yaml", addonsDir))
 
 	must(err)
@@ -40,15 +42,27 @@ func main() {
 	downloader := Curse(tmpDir, debug)
 	unpacker := NewUnpacker()
 
-	for _, addon := range cfg.Addons {
-		file, sum, err := downloader.Download(addon)
-		must(err)
+	var wg sync.WaitGroup
 
-		unpacker.AddFile(addon, file, sum)
+	for _, addon := range cfg.Addons {
+		wg.Add(1)
+
+		go func(addon string) {
+			defer wg.Done()
+			file, sum, err := downloader.Download(addon)
+			must(err)
+
+			unpacker.AddFile(addon, file, sum)
+		}(addon)
 	}
 
-	err = unpacker.Unpack()
+	wg.Wait()
+
+	defer unpacker.Cleanup()
+
+	err = unpacker.Unpack(addonsDir)
 	must(err)
 
-	log.Printf("%#v", unpacker)
+	err = unpacker.SaveCache(addonsDir)
+	must(err)
 }
