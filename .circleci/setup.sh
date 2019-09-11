@@ -3,4 +3,4 @@
 set -ex
 
 apk update
-apk add make gcc
+apk add make gcc libc-dev
