@@ -9,14 +9,14 @@ import (
 )
 
 func TestDownloadUrl(t *testing.T) {
-	curse := Curse("/tmp", false)
+	curse := Curse("/tmp", false, true)
 	url, err := curse.getDownloadUrl("bartender4")
 	require.Nil(t, err)
 	require.Regexp(t, regexp.MustCompile("^https://www.curseforge.com/wow/addons/bartender4/download/\\d+/file$"), url)
 }
 
 func TestDownloadFile(t *testing.T) {
-	curse := Curse("/tmp", false)
+	curse := Curse("/tmp", false, true)
 	path, _, err := curse.downloadFile("https://gonzih.me/index.html")
 	defer os.Remove(path)
 	require.Nil(t, err)
