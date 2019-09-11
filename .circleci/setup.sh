@@ -3,4 +3,4 @@
 set -ex
 
 apk update
-apk add chromium make
+apk add chromium make gcc
