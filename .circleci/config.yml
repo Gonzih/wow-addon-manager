@@ -6,5 +6,7 @@ jobs:
     working_directory: ~/app
     steps:
       - checkout
+      - run: ./.circleci/setup.sh
       - run: go get
-      - run: make build test
+      - run: make build
+      - run: make test
