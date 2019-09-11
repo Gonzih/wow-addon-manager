@@ -8,12 +8,11 @@ import (
 )
 
 var addonsDir string
-var debug, headless bool
+var debug bool
 
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
-	flag.BoolVar(&headless, "headless", false, "Run in headlsess")
 	flag.Parse()
 }
 
@@ -38,7 +37,7 @@ func main() {
 	tmpDir := fmt.Sprintf("%s/tmp", addonsDir)
 	_ = os.Mkdir(tmpDir, os.ModePerm)
 
-	downloader := Curse(tmpDir, debug, headless)
+	downloader := Curse(tmpDir, debug)
 	unpacker := NewUnpacker()
 
 	for _, addon := range cfg.Addons {

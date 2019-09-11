@@ -2,7 +2,7 @@ build:
 	go build .
 
 run: build
-	./addon-manager --debug --headless
+	./wow-addon-manager --debug
 
 test:
 	go test -v
