@@ -3,4 +3,4 @@
 set -ex
 
 apk update
-apk add make
+apk add make gcc
