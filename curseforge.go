@@ -72,13 +72,7 @@ func (cfd *CurseForgeDownloader) Download(name string) (string, string, error) {
 		return "", "", err
 	}
 
-	cfd.Logf("Going to url %s to download %s", url, name)
+	log.Printf("Going to url %s to download %s", url, name)
 
 	return cfd.downloadFile(url)
-}
-
-func (cfd *CurseForgeDownloader) Logf(s string, args ...interface{}) {
-	if cfd.debug {
-		log.Printf(s, args...)
-	}
 }
