@@ -55,6 +55,7 @@ func (u *Unpacker) Unpack(dest string) error {
 			continue
 		}
 
+		log.Printf("Updating %s", addon)
 		err = Unzip(filePath, dest)
 		if err != nil {
 			return fmt.Errorf("Error unpacking %s: %s", filePath, err)
