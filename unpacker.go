@@ -52,6 +52,7 @@ func (u *Unpacker) Unpack(dest string) error {
 		cacheSum, ok := u.Cache.Checksums[addon]
 
 		if ok && sum == cacheSum {
+			log.Printf("%s is up to date", addon)
 			continue
 		}
 
