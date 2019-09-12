@@ -5,13 +5,13 @@ Simple go program that synchronizes local World of Warcraft addons from cursefor
 ## Installation
 
 ```
-   go get github.com/Gonzih/wow-addon-manager
+go get github.com/Gonzih/wow-addon-manager
 ```
 
 ## Updating
 
 ```
-   go get -u github.com/Gonzih/wow-addon-manager
+go get -u github.com/Gonzih/wow-addon-manager
 ```
 
 ## Usage
@@ -45,5 +45,5 @@ addons:
 Run the program
 
 ```
-   wow-addon-manager --addons-dir PATH_TO_WOW/Interface/Addons
+wow-addon-manager --addons-dir PATH_TO_WOW/Interface/Addons
 ```
