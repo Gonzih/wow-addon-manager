@@ -34,7 +34,6 @@ func main() {
 	cfg, err := ParseConfig(fmt.Sprintf("%s/addons.yaml", addonsDir))
 
 	must(err)
-	log.Printf("%#v", cfg)
 
 	tmpDir := fmt.Sprintf("%s/tmp", addonsDir)
 	_ = os.Mkdir(tmpDir, os.ModePerm)
