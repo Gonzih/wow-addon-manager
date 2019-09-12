@@ -18,11 +18,7 @@ go get -u github.com/Gonzih/wow-addon-manager
 
 ## Usage
 
-Create addons.yaml file your `PATH_TO_WOW/Interface/Addons` folder with list of addons
-
-
-Each addon in this list is just part of url from curseforge,
-so for `https://www.curseforge.com/wow/addons/atlas` it would be atlas, for `https://www.curseforge.com/wow/addons/atlas-classicwow/` it would be `atlas-classicwow`.
+Create `addons.yaml` file your `PATH_TO_WOW/Interface/Addons` folder with list of addons
 
 ```addons.yaml
 addons:
@@ -47,9 +43,10 @@ addons:
 - xtolevel-classic
 ```
 
+Each addon in this list is just part of url from curseforge,
+so for `https://www.curseforge.com/wow/addons/atlas` it would be atlas, for `https://www.curseforge.com/wow/addons/atlas-classicwow/` it would be `atlas-classicwow`.
 
 Run the program
-
 ```
 wow-addon-manager --addons-dir PATH_TO_WOW/Interface/Addons
 ```
