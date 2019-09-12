@@ -1,7 +1,14 @@
 addons:
-- bartender4
+# atlas related stuff
 - atlas
 - atlas-classicwow
+- atlas-classorderhalls
+- atlas-dungeon-locations
+- atlas-transportation
+- atlaslootclassic
+- atlaslootclassic_maps
+
+- bartender4
 - classicauradurations
 - classiccastbars
 - classiclfg
