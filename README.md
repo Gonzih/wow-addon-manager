@@ -44,7 +44,8 @@ addons:
 ```
 
 Each addon in this list is just part of url from curseforge,
-so for `https://www.curseforge.com/wow/addons/atlas` it would be atlas, for `https://www.curseforge.com/wow/addons/atlas-classicwow/` it would be `atlas-classicwow`.
+so for `https://www.curseforge.com/wow/addons/atlas` it would be `atlas`,
+for `https://www.curseforge.com/wow/addons/atlas-classicwow/` it would be `atlas-classicwow`.
 
 Run the program
 ```
