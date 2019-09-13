@@ -27,13 +27,22 @@ func Curse(path string, debug bool) *CurseForgeDownloader {
 }
 
 func (cfd *CurseForgeDownloader) getDownloadUrl(name string) (string, error) {
-	doc, err := htmlquery.LoadURL(fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, name))
+	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, name)
+	doc, err := htmlquery.LoadURL(url)
 	if err != nil {
 		return "", fmt.Errorf("Could get download url for %s: %s", name, err)
 	}
 
-	a := htmlquery.FindOne(doc, `//a[text()='here']`)
+	xpath := `//a[text()='here']`
+	a := htmlquery.FindOne(doc, xpath)
 	href := htmlquery.SelectAttr(a, "href")
+
+	// if href == "" {
+	// 	log.Printf("Trying to use chrome to download url since href was empty")
+	// 	chrome := NewChrome(true)
+	// 	href, err = chrome.GetDownlaodHrefUsingChrome(url, xpath)
+	// }
+
 	href = fmt.Sprintf("%s%s", baseURL, href)
 
 	return href, nil
