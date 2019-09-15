@@ -9,7 +9,7 @@ import (
 )
 
 func TestDownloadUrl(t *testing.T) {
-	curse := Curse("/tmp", false)
+	curse := Curse("./addons/tmp", false)
 	url, err := curse.getDownloadUrl("bartender4")
 	require.Nil(t, err)
 	require.Regexp(t, regexp.MustCompile("^https://www.curseforge.com/wow/addons/bartender4/download/\\d+/file$"), url)
