@@ -16,7 +16,7 @@ func TestDownloadUrl(t *testing.T) {
 }
 
 func TestDownloadFile(t *testing.T) {
-	curse := Curse("/tmp", false)
+	curse := Curse("./addons/tmp", false)
 	path, _, err := curse.downloadFile("https://gonzih.me/index.html")
 	defer os.Remove(path)
 	require.Nil(t, err)
