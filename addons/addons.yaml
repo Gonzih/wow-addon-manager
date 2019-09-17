@@ -22,10 +22,13 @@ addons:
 - omni-cc
 - quartz
 - questie
-- shadowed-unit-frames
+# - shadowed-unit-frames
+- unitframesimproved
 - vendor-price
 - weakauras-2
 - whats-training
 - xtolevel-classic
 - spy-classic
 - classicthreatmeter
+- real-mob-health
+- weaponswingtimer
