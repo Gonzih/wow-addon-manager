@@ -23,7 +23,9 @@ addons:
 - quartz
 - questie
 # - shadowed-unit-frames
-- unitframesimproved
+# - unitframesimproved
+- lorti_ui
+- plater-nameplates
 - vendor-price
 - weakauras-2
 - whats-training
