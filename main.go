@@ -55,7 +55,7 @@ func main() {
 		}(addon)
 	}
 
-	gh := GitHub(tmpDir)
+	gh := GitHub(addonsDir)
 
 	for folder, name := range cfg.GitHub {
 		wg.Add(1)
