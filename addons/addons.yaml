@@ -1,36 +1,37 @@
-addons:
-# atlas related stuff
-- atlas
-- atlas-classicwow
-- atlas-classorderhalls
-- atlas-dungeon-locations
-- atlas-transportation
-- atlaslootclassic
-- atlaslootclassic_maps
+curseforge:
+  # atlas related stuff
+  - atlas
+  - atlas-classicwow
+  - atlas-classorderhalls
+  - atlas-dungeon-locations
+  - atlas-transportation
+  - atlaslootclassic
+  - atlaslootclassic_maps
 
-- auctionator
-- bartender4
-- classicauradurations
-- classiccastbars
-- classiclfg
-- deadly-boss-mods
-- dbm-bc
-- details
-- itemtooltipprofessionicons
-- mapfader
-- mik-scrolling-battle-text
-- omni-cc
-- quartz
-- questie
-# - shadowed-unit-frames
-# - unitframesimproved
-- lorti_ui
-- plater-nameplates
-- vendor-price
-- weakauras-2
-- whats-training
-- xtolevel-classic
-- spy-classic
-- classicthreatmeter
-- real-mob-health
-- weaponswingtimer
+  - auctionator
+  - bartender4
+  - classicauradurations
+  - classiccastbars
+  - classiclfg
+  - deadly-boss-mods
+  - dbm-bc
+  - details
+  - itemtooltipprofessionicons
+  - mapfader
+  - mik-scrolling-battle-text
+  - omni-cc
+  - quartz
+  - questie
+  - lorti_ui
+  - plater-nameplates
+  - vendor-price
+  - weakauras-2
+  - whats-training
+  - xtolevel-classic
+  - spy-classic
+  - classicthreatmeter
+  - real-mob-health
+  - weaponswingtimer
+
+github:
+  Lorti-UI-Classic: Chordsy/Lorti-UI-Classic

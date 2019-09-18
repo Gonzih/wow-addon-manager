@@ -9,7 +9,8 @@ import (
 
 //Config represents user defined config
 type Config struct {
-	Addons []string `yaml:"addons"`
+	CurseForge []string          `yaml:"curseforge"`
+	GitHub     map[string]string `yaml:"github"`
 }
 
 func ParseConfig(path string) (*Config, error) {
@@ -31,5 +32,4 @@ func ParseConfig(path string) (*Config, error) {
 	}
 
 	return cfg, nil
-
 }

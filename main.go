@@ -38,21 +38,33 @@ func main() {
 	tmpDir := fmt.Sprintf("%s/tmp", addonsDir)
 	_ = os.Mkdir(tmpDir, os.ModePerm)
 
-	downloader := Curse(tmpDir, debug)
+	curse := Curse(tmpDir, debug)
 	unpacker := NewUnpacker()
 
 	var wg sync.WaitGroup
 
-	for _, addon := range cfg.Addons {
+	for _, addon := range cfg.CurseForge {
 		wg.Add(1)
 
 		go func(addon string) {
 			defer wg.Done()
-			file, sum, err := downloader.Download(addon)
+			file, sum, err := curse.Download(addon)
 			must(err)
 
 			unpacker.AddFile(addon, file, sum)
 		}(addon)
+	}
+
+	gh := GitHub(tmpDir)
+
+	for folder, name := range cfg.GitHub {
+		wg.Add(1)
+
+		go func(folder, name string) {
+			defer wg.Done()
+			err := gh.Update(folder, name)
+			must(err)
+		}(folder, name)
 	}
 
 	wg.Wait()
