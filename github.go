@@ -26,7 +26,11 @@ func (gh *GitHubDownloader) Update(folder, name string) error {
 		URL: url,
 	})
 
-	if err != git.ErrRepositoryAlreadyExists {
+	if err == git.ErrRepositoryAlreadyExists {
+		return nil
+	}
+
+	if err != nil {
 		return err
 	}
 
@@ -44,9 +48,9 @@ func (gh *GitHubDownloader) Update(folder, name string) error {
 		Force: true,
 	})
 
-	if err != git.NoErrAlreadyUpToDate {
-		return err
+	if err == git.NoErrAlreadyUpToDate {
+		return nil
 	}
 
-	return nil
+	return err
 }
