@@ -1,7 +1,7 @@
 build:
 	go build -o wow-addon-manager .
 
-run: build
+run:
 	go run .
 
 test:
