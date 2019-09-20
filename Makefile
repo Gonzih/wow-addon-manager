@@ -2,7 +2,7 @@ build:
 	go build -o wow-addon-manager .
 
 run: build
-	./wow-addon-manager --debug
+	go run .
 
 test:
 	go test -v
