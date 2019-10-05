@@ -59,7 +59,7 @@ func (c *Chrome) chromeOpts() []func(*chromedp.ExecAllocator) {
 
 func (c *Chrome) GetDownlaodHrefUsingChrome(url, xpath string) (string, error) {
 	log.Printf("Navigating to %s", url)
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	opts := c.chromeOpts()
@@ -76,7 +76,7 @@ func (c *Chrome) GetDownlaodHrefUsingChrome(url, xpath string) (string, error) {
 	var ok bool
 	err := chromedp.Run(taskCtx,
 		chromedp.Navigate(url),
-		chromedp.AttributeValue(xpath, "href", &href, &ok),
+		chromedp.AttributeValue(xpath, "href", &href, &ok, chromedp.BySearch),
 	)
 
 	if err != nil {
