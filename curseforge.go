@@ -37,11 +37,16 @@ func (cfd *CurseForgeDownloader) getDownloadUrl(name string) (string, error) {
 	a := htmlquery.FindOne(doc, xpath)
 	href := htmlquery.SelectAttr(a, "href")
 
-	// if href == "" {
-	// 	log.Printf("Trying to use chrome to download url since href was empty")
-	// 	chrome := NewChrome(true)
-	// 	href, err = chrome.GetDownlaodHrefUsingChrome(url, xpath)
-	// }
+	if href == "" {
+		log.Printf("Trying to use chrome to download url since href was empty")
+		chrome := NewChrome(true)
+		href, err = chrome.GetDownlaodHrefUsingChrome(url, xpath)
+		if err != nil {
+			return "", fmt.Errorf("Could not get download url using chrome for %s: %s", name, err)
+		}
+
+		log.Printf("Got download url using chrome %s", href)
+	}
 
 	href = fmt.Sprintf("%s%s", baseURL, href)
 
