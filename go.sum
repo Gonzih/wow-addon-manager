@@ -9,8 +9,12 @@ github.com/chromedp/cdproto v0.0.0-20191002232357-7e4eb21c2591 h1:goYMFlMSVQRj07
 github.com/chromedp/cdproto v0.0.0-20191002232357-7e4eb21c2591/go.mod h1:0YChpVzuLJC5CPr+x3xkHN6Z8KOSXjNbL7qV8Wc4GW0=
 github.com/chromedp/cdproto v0.0.0-20191005005618-1699e8450342 h1:yHirQyQqbofkkoE82p3Cea6RBv7napHRhJxr1aHyg/k=
 github.com/chromedp/cdproto v0.0.0-20191005005618-1699e8450342/go.mod h1:lCoZkOuHSJaVZEIrQ0OAhegnmLHNF47DdRJq5c0dTrI=
+github.com/chromedp/cdproto v0.0.0-20191005232412-878241ce2dca h1:XxAP+Zo3Lo+lyXLCQnbbCJ0j+gPhRtJpyKEJALcC3Xo=
+github.com/chromedp/cdproto v0.0.0-20191005232412-878241ce2dca/go.mod h1:PfAWWKJqjlGFYJEidUM6aVIWPr0EpobeyVWEEmplX7g=
 github.com/chromedp/chromedp v0.4.1 h1:HZ+rfpK9XOuPy5GKuKwJ+i9R39b4+1jsYdYhJUZCOho=
 github.com/chromedp/chromedp v0.4.1/go.mod h1:ERaQ/hKPYMgJkQybhS7b8mZb66qDPqkow1umTzVGISQ=
+github.com/chromedp/chromedp v0.4.2 h1:KWxRIZVxpSF+31TbKLBtjnUqcAQMeoR2Zzr6P5oiX48=
+github.com/chromedp/chromedp v0.4.2/go.mod h1:H9UVZcdQDsCn/Ntgk5v3Z44DEFeA68mxWnXJRbMtm9c=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
@@ -38,6 +42,8 @@ github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd h1:Coekwdh0v
 github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
 github.com/knq/sysutil v0.0.0-20181215143952-f05b59f0f307 h1:vl4eIlySbjertFaNwiMjXsGrFVK25aOWLq7n+3gh2ls=
 github.com/knq/sysutil v0.0.0-20181215143952-f05b59f0f307/go.mod h1:BjPj+aVjl9FW/cCGiF3nGh5v+9Gd3VCgBQbod/GlMaQ=
+github.com/knq/sysutil v0.0.0-20191005231841-15668db23d08 h1:V0an7KRw92wmJysvFvtqtKMAPmvS5O0jtB0nYo6t+gs=
+github.com/knq/sysutil v0.0.0-20191005231841-15668db23d08/go.mod h1:dFWs1zEqDjFtnBXsd1vPOZaLsESovai349994nHx3e0=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
@@ -88,6 +94,7 @@ golang.org/x/sys v0.0.0-20191002091554-b397fe3ad8ed h1:5TJcLJn2a55mJjzYk0yOoqN8X
 golang.org/x/sys v0.0.0-20191002091554-b397fe3ad8ed/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20191003212358-c178f38b412c h1:6Zx7DRlKXf79yfxuQ/7GqV3w2y7aDsk6bGg0MzF5RVU=
 golang.org/x/sys v0.0.0-20191003212358-c178f38b412c/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
