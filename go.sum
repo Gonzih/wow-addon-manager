@@ -11,10 +11,14 @@ github.com/chromedp/cdproto v0.0.0-20191005005618-1699e8450342 h1:yHirQyQqbofkko
 github.com/chromedp/cdproto v0.0.0-20191005005618-1699e8450342/go.mod h1:lCoZkOuHSJaVZEIrQ0OAhegnmLHNF47DdRJq5c0dTrI=
 github.com/chromedp/cdproto v0.0.0-20191005232412-878241ce2dca h1:XxAP+Zo3Lo+lyXLCQnbbCJ0j+gPhRtJpyKEJALcC3Xo=
 github.com/chromedp/cdproto v0.0.0-20191005232412-878241ce2dca/go.mod h1:PfAWWKJqjlGFYJEidUM6aVIWPr0EpobeyVWEEmplX7g=
+github.com/chromedp/cdproto v0.0.0-20191009033829-c22f49c9ff0a h1:AuIGvB6IuWpMEdfKQ+t77D6dzLpNftzxAsktehYyWn8=
+github.com/chromedp/cdproto v0.0.0-20191009033829-c22f49c9ff0a/go.mod h1:PfAWWKJqjlGFYJEidUM6aVIWPr0EpobeyVWEEmplX7g=
 github.com/chromedp/chromedp v0.4.1 h1:HZ+rfpK9XOuPy5GKuKwJ+i9R39b4+1jsYdYhJUZCOho=
 github.com/chromedp/chromedp v0.4.1/go.mod h1:ERaQ/hKPYMgJkQybhS7b8mZb66qDPqkow1umTzVGISQ=
 github.com/chromedp/chromedp v0.4.2 h1:KWxRIZVxpSF+31TbKLBtjnUqcAQMeoR2Zzr6P5oiX48=
 github.com/chromedp/chromedp v0.4.2/go.mod h1:H9UVZcdQDsCn/Ntgk5v3Z44DEFeA68mxWnXJRbMtm9c=
+github.com/chromedp/chromedp v0.5.0 h1:TsP/2km9ZVK3YucgmSnNfP2KmGVVlRKsFwQegZEbdrU=
+github.com/chromedp/chromedp v0.5.0/go.mod h1:3NMfuKTrKNr8PWEvHzdzZ57PK4jm9zW1C5nKiaWdxcM=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
@@ -95,6 +99,8 @@ golang.org/x/sys v0.0.0-20191002091554-b397fe3ad8ed/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20191003212358-c178f38b412c h1:6Zx7DRlKXf79yfxuQ/7GqV3w2y7aDsk6bGg0MzF5RVU=
 golang.org/x/sys v0.0.0-20191003212358-c178f38b412c/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20191008105621-543471e840be h1:QAcqgptGM8IQBC9K/RC4o+O9YmqEm0diQn9QmZw/0mU=
+golang.org/x/sys v0.0.0-20191008105621-543471e840be/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
