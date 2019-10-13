@@ -62,40 +62,43 @@ func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
 	var href string
 	var err error
 
-	log.Printf("Navigating to %s", url)
-
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	defer cancel()
-
-	opts := c.chromeOpts()
-
-	alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
-	defer cancel()
-
-	logOpts := chromedp.WithErrorf(log.Printf)
-
-	taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
-	defer cancel()
-
-	err = chromedp.Run(taskCtx,
-		page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorDeny),
-		chromedp.Navigate(url),
-	)
-	if err != nil {
-		return "", fmt.Errorf("Could not navigate to %s: %s", url, err)
-	}
-
 	for i := 0; i < 10; i++ {
-		log.Println("Trying to fetch href")
 
-		time.Sleep(time.Second * 5)
+		log.Printf("Navigating to %s", url)
+
+		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+		defer cancel()
+
+		opts := c.chromeOpts()
+
+		alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
+		defer cancel()
+
+		logOpts := chromedp.WithErrorf(log.Printf)
+
+		taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
+		defer cancel()
 
 		err = chromedp.Run(taskCtx,
-			chromedp.Evaluate(`$("a:contains('here')").attr('href')`, &href),
+			page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorDeny),
+			chromedp.Navigate(url),
 		)
-		log.Printf(`Evaluate result "%s": "%s"`, href, err)
-
 		if err != nil {
+			log.Printf("Could not navigate to %s: %s", url, err)
+			continue
+		}
+
+		time.Sleep(time.Second * 15)
+
+		log.Println("Trying to query for href")
+		var ok bool
+		err = chromedp.Run(taskCtx,
+			// chromedp.Evaluate(`$("a:contains('here')").attr('href')`, &href),
+			chromedp.AttributeValue(`//a[text()='here']`, "href", &href, &ok, chromedp.BySearch),
+		)
+		log.Printf(`Evaluate result is "%v" "%s": "%s"`, ok, href, err)
+
+		if err != nil || !ok {
 			continue
 		}
 
