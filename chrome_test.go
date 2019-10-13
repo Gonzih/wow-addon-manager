@@ -9,11 +9,11 @@ import (
 )
 
 func TestDownloadHrefWithChrome(t *testing.T) {
-	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, "bartender4")
+	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, "atlas")
 
 	chrome := NewChrome(true)
 	href, err := chrome.GetDownlaodHrefUsingChrome(url)
 
 	require.Nil(t, err)
-	require.Regexp(t, regexp.MustCompile("^/wow/addons/bartender4/download/\\d+/file$"), href)
+	require.Regexp(t, regexp.MustCompile("^/wow/addons/atlas/download/\\d+/file$"), href)
 }

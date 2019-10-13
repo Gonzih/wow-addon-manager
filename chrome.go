@@ -94,6 +94,7 @@ func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
 		var ok bool
 		err = chromedp.Run(taskCtx,
 			// chromedp.Evaluate(`$("a:contains('here')").attr('href')`, &href),
+			chromedp.WaitReady(`//a[text()='here']`, chromedp.BySearch),
 			chromedp.AttributeValue(`//a[text()='here']`, "href", &href, &ok, chromedp.BySearch),
 		)
 		log.Printf(`Evaluate result is "%v" "%s": "%s"`, ok, href, err)
