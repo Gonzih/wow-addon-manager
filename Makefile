@@ -6,3 +6,6 @@ run:
 
 test:
 	go test -v
+
+ci:
+	nix-shell shell.nix --run 'make run'

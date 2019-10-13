@@ -2,12 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: golang:1.13-alpine
-    working_directory: ~/app
+      - image: nixos/nix
     steps:
       - checkout
-      - run: ./.circleci/setup.sh
-      - run: go get
-      - run: make build
-      - run: make test
-      - run: make run
+      - run: nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixos
+      - run: nix-channel --update
+      - run: nix-env -i gnumake
+      - run: make ci
