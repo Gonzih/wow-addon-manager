@@ -91,15 +91,12 @@ func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
 		time.Sleep(time.Second * 15)
 
 		log.Println("Trying to query for href")
-		var ok bool
 		err = chromedp.Run(taskCtx,
-			// chromedp.Evaluate(`$("a:contains('here')").attr('href')`, &href),
-			chromedp.WaitReady(`//a[text()='here']`, chromedp.BySearch),
-			chromedp.AttributeValue(`//a[text()='here']`, "href", &href, &ok, chromedp.BySearch),
+			chromedp.Evaluate(`$('a').map((i, el) => $(el).attr('href')).toArray().find(h => h.match(/\/wow\/addons\/.+\/download\/\d+\/file/))`, &href),
 		)
-		log.Printf(`Evaluate result is "%v" "%s": "%s"`, ok, href, err)
+		log.Printf(`Evaluate result is "%s": "%s"`, href, err)
 
-		if err != nil || !ok {
+		if err != nil {
 			continue
 		}
 
