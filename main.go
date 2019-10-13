@@ -10,9 +10,11 @@ import (
 
 var addonsDir string
 var debug bool
+var fast bool
 
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
+	flag.BoolVar(&fast, "fast", false, "Run everything in parallel")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
 }
 
@@ -43,16 +45,28 @@ func main() {
 
 	var wg sync.WaitGroup
 
+	for _, url := range cfg.URLs {
+		file, sum, err := curse.DownloadFile(url)
+		must(err)
+		unpacker.AddFile(url, file, sum)
+	}
+
 	for _, addon := range cfg.CurseForge {
 		wg.Add(1)
 
-		go func(addon string) {
+		f := func(addon string) {
 			defer wg.Done()
 			file, sum, err := curse.Download(addon)
 			must(err)
 
 			unpacker.AddFile(addon, file, sum)
-		}(addon)
+		}
+
+		if fast {
+			go f(addon)
+		} else {
+			f(addon)
+		}
 	}
 
 	gh := GitHub(addonsDir)

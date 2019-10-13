@@ -7,6 +7,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/chromedp"
 )
 
@@ -57,34 +58,49 @@ func (c *Chrome) chromeOpts() []func(*chromedp.ExecAllocator) {
 	return opts
 }
 
-func (c *Chrome) GetDownlaodHrefUsingChrome(url, xpath string) (string, error) {
-	log.Printf("Navigating to %s", url)
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	opts := c.chromeOpts()
-
-	alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
-	defer cancel()
-
-	logOpts := chromedp.WithErrorf(log.Printf)
-
-	taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
-	defer cancel()
-
+func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
 	var href string
-	var ok bool
-	err := chromedp.Run(taskCtx,
-		chromedp.Navigate(url),
-		chromedp.AttributeValue(xpath, "href", &href, &ok, chromedp.BySearch),
-	)
+	var err error
+
+	for i := 0; i < 10; i++ {
+		log.Println("Trying to fetch href")
+		log.Printf("Navigating to %s", url)
+
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second*40)
+		defer cancel()
+
+		opts := c.chromeOpts()
+
+		alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
+		defer cancel()
+
+		logOpts := chromedp.WithErrorf(log.Printf)
+
+		taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
+		defer cancel()
+
+		err = chromedp.Run(taskCtx,
+			page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorDeny),
+			chromedp.Navigate(url),
+		)
+		if err != nil {
+			log.Printf("Could not navigate to %s: %s", url, err)
+			continue
+		}
+
+		time.Sleep(time.Second * 5)
+
+		err = chromedp.Run(taskCtx,
+			chromedp.Evaluate(`$('a:contains("here")').attr('href')`, &href),
+		)
+
+		if href != "" && err == nil {
+			break
+		}
+	}
 
 	if err != nil {
 		return "", fmt.Errorf("Could get download url from %s: %s", url, err)
-	}
-
-	if !ok {
-		return "", fmt.Errorf("Could not get download url: %s", href)
 	}
 
 	return href, nil

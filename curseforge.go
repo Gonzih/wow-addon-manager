@@ -27,10 +27,9 @@ func Curse(path string, debug bool) *CurseForgeDownloader {
 
 func (cfd *CurseForgeDownloader) getDownloadUrl(name string) (string, error) {
 	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, name)
-	xpath := `//a[text()='here']`
 
 	chrome := NewChrome(true)
-	href, err := chrome.GetDownlaodHrefUsingChrome(url, xpath)
+	href, err := chrome.GetDownlaodHrefUsingChrome(url)
 	if err != nil {
 		return "", fmt.Errorf("Could not get download url using chrome for %s: %s", name, err)
 	}
@@ -42,7 +41,9 @@ func (cfd *CurseForgeDownloader) getDownloadUrl(name string) (string, error) {
 	return href, nil
 }
 
-func (cfd *CurseForgeDownloader) downloadFile(url string) (string, string, error) {
+func (cfd *CurseForgeDownloader) DownloadFile(url string) (string, string, error) {
+	log.Printf("Trying to download file from url %s", url)
+
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", "", err
@@ -77,5 +78,5 @@ func (cfd *CurseForgeDownloader) Download(name string) (string, string, error) {
 
 	log.Printf("Going to url %s to download %s", url, name)
 
-	return cfd.downloadFile(url)
+	return cfd.DownloadFile(url)
 }

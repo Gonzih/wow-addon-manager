@@ -13,8 +13,6 @@ curseforge:
   - classicauradurations
   - classiccastbars
   - classiclfg
-  - deadly-boss-mods
-  - dbm-bc
   - details
   - itemtooltipprofessionicons
   - mapfader
@@ -23,7 +21,6 @@ curseforge:
   - quartz
   - questie
   - lorti_ui
-  # - plater-nameplates
   - vendor-price
   - weakauras-2
   - whats-training
@@ -32,6 +29,12 @@ curseforge:
   - classicthreatmeter
   - real-mob-health
   - weaponswingtimer
+
+urls:
+  # deadly boss mod classic
+  - https://www.curseforge.com/wow/addons/deadly-boss-mods/download/2806780/file
+  # quartz for classic
+  - https://www.curseforge.com/wow/addons/quartz/download/2794707/file
 
 github:
   # folder-name: organization/reponame

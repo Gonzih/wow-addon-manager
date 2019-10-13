@@ -12,6 +12,7 @@ import (
 type Config struct {
 	Addons     []string          `yaml:"addons"`
 	CurseForge []string          `yaml:"curseforge"`
+	URLs       []string          `yaml:"urls"`
 	GitHub     map[string]string `yaml:"github"`
 }
 
