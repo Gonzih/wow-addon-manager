@@ -11,11 +11,13 @@ import (
 var addonsDir string
 var debug bool
 var fast bool
+var headless bool
 
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
 	flag.BoolVar(&fast, "fast", false, "Run everything in parallel")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
+	flag.BoolVar(&debug, "headless", false, "Run in headless mode")
 }
 
 type downloadedAddon struct {
@@ -45,27 +47,27 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	for _, url := range cfg.URLs {
-		file, sum, err := curse.DownloadFile(url)
-		must(err)
-		unpacker.AddFile(url, file, sum)
-	}
+	urls := cfg.URLs
 
 	for _, addon := range cfg.CurseForge {
+		urls = append(urls, FormatURL(addon))
+	}
+
+	for _, url := range urls {
 		wg.Add(1)
 
-		f := func(addon string) {
+		f := func(url string) {
 			defer wg.Done()
-			file, sum, err := curse.Download(addon)
+			file, sum, err := curse.DownloadFile(url)
 			must(err)
 
-			unpacker.AddFile(addon, file, sum)
+			unpacker.AddFile(url, file, sum)
 		}
 
 		if fast {
-			go f(addon)
+			go f(url)
 		} else {
-			f(addon)
+			f(url)
 		}
 	}
 

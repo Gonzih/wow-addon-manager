@@ -3,12 +3,18 @@ package main
 
 import (
 	"context"
+	"crypto/md5"
 	"fmt"
+	"io"
 	"log"
+	"os"
+	"path/filepath"
+	"regexp"
 	"time"
 
 	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/chromedp"
+	"github.com/google/uuid"
 )
 
 type Chrome struct {
@@ -58,57 +64,124 @@ func (c *Chrome) chromeOpts() []func(*chromedp.ExecAllocator) {
 	return opts
 }
 
-func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
-	var href string
-	var err error
+// func (c *Chrome) GetDownlaodHrefUsingChrome(url string) (string, error) {
+// 	var href string
+// 	var err error
 
-	for i := 0; i < 10; i++ {
+// 	for i := 0; i < 10; i++ {
 
-		log.Printf("Navigating to %s", url)
+// 		log.Printf("Navigating to %s", url)
 
-		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-		defer cancel()
+// 		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+// 		defer cancel()
 
-		opts := c.chromeOpts()
+// 		opts := c.chromeOpts()
 
-		alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
-		defer cancel()
+// 		alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
+// 		defer cancel()
 
-		logOpts := chromedp.WithErrorf(log.Printf)
+// 		logOpts := chromedp.WithErrorf(log.Printf)
 
-		taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
-		defer cancel()
+// 		taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
+// 		defer cancel()
 
-		err = chromedp.Run(taskCtx,
-			page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorDeny),
-			chromedp.Navigate(url),
-		)
-		if err != nil {
-			log.Printf("Could not navigate to %s: %s", url, err)
-			continue
-		}
+// 		err = chromedp.Run(taskCtx,
+// 			page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorDeny),
+// 			chromedp.Navigate(url),
+// 		)
+// 		if err != nil {
+// 			log.Printf("Could not navigate to %s: %s", url, err)
+// 			continue
+// 		}
 
-		time.Sleep(time.Second * 15)
+// 		time.Sleep(time.Second * 15)
 
-		log.Println("Trying to query for href")
-		err = chromedp.Run(taskCtx,
-			chromedp.Evaluate(`$('a').map((i, el) => $(el).attr('href')).toArray().find(h => h.match(/\/wow\/addons\/.+\/download\/\d+\/file/))`, &href),
-		)
-		log.Printf(`Evaluate result is "%s": "%s"`, href, err)
+// 		log.Println("Trying to query for href")
+// 		err = chromedp.Run(taskCtx,
+// 			chromedp.Evaluate(`$('a').map((i, el) => $(el).attr('href')).toArray().find(h => h.match(/\/wow\/addons\/.+\/download\/\d+\/file/))`, &href),
+// 		)
+// 		log.Printf(`Evaluate result is "%s": "%v"`, href, err)
 
-		if err != nil {
-			continue
-		}
+// 		if err != nil {
+// 			continue
+// 		}
 
-		if href != "" {
+// 		if href != "" {
+// 			break
+// 		}
+// 	}
+
+// 	if err != nil {
+// 		return "", fmt.Errorf("Could get download url from %s: %s", url, err)
+// 	}
+
+// 	return href, nil
+
+// }
+
+func (c *Chrome) DownloadFileUsingChrome(url, tmp string) (string, string, error) {
+	folderName := uuid.New().String()
+	folder := fmt.Sprintf("%s/%s", tmp, folderName)
+	os.MkdirAll(folder, os.ModePerm)
+
+	log.Printf("Navigating to %s", url)
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+
+	opts := c.chromeOpts()
+
+	alloCtx, cancel := chromedp.NewExecAllocator(ctx, opts...)
+	defer cancel()
+
+	logOpts := chromedp.WithErrorf(log.Printf)
+
+	taskCtx, cancel := chromedp.NewContext(alloCtx, logOpts)
+	defer cancel()
+
+	log.Printf("Setting download path to %s", folder)
+
+	err := chromedp.Run(taskCtx,
+		page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorAllow).WithDownloadPath(folder),
+		chromedp.Navigate(url),
+	)
+
+	time.Sleep(time.Second * 20)
+
+	if err != nil {
+		log.Printf(`Chrome session exit error that will be ignored: "%v"`, err)
+	}
+
+	files, err := filepath.Glob(fmt.Sprintf("%s/*", folder))
+	if err != nil {
+		return "", "", fmt.Errorf("Could not find files in %s: %s", folder, err)
+	}
+
+	if len(files) == 0 {
+		return "", "", fmt.Errorf("Folder %s is empty", folder)
+	}
+
+	var file string
+	reg := regexp.MustCompile(`\.zip$`)
+	for _, f := range files {
+		if reg.MatchString(f) {
+			file = f
 			break
 		}
 	}
 
+	mdbuf := md5.New()
+	f, err := os.Open(file)
 	if err != nil {
-		return "", fmt.Errorf("Could get download url from %s: %s", url, err)
+		return "", "", fmt.Errorf("Could not open file %s: %s", file, err)
 	}
 
-	return href, nil
+	_, err = io.Copy(mdbuf, f)
+	if err != nil {
+		return "", "", fmt.Errorf("Could not read file %s to calculate checksum: %s", file, err)
+	}
 
+	sum := fmt.Sprintf("%x", mdbuf.Sum(nil))
+
+	return file, sum, nil
 }
