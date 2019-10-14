@@ -1,43 +1,8 @@
 curseforge:
-  # atlas related stuff
   - atlas
-  - atlas-classicwow
-  - atlas-classorderhalls
-  - atlas-dungeon-locations
-  - atlas-transportation
-  - atlaslootclassic
-  - atlaslootclassic_maps
-
-  - auctionator
-  - classicauradurations
-  - classiccastbars
-  - classiclfg
-  - details
-  - itemtooltipprofessionicons
-  - mapfader
-  - mik-scrolling-battle-text
-  - questie
-  - lorti_ui
-  - vendor-price
-  - whats-training
-  - xtolevel-classic
-  - spy-classic
-  - classicthreatmeter
-  - real-mob-health
-  - weaponswingtimer
-  - characterstatsclassic
-  - gladiatorlossa
 
 urls:
   - https://www.curseforge.com/wow/addons/deadly-boss-mods/download/2806780/file
-  - https://www.curseforge.com/wow/addons/quartz/download/2794707/file
-  - https://www.curseforge.com/wow/addons/omni-cc/download/2793925/file
-  - https://www.curseforge.com/wow/addons/bartender4/download/2794702/file
-  - https://www.curseforge.com/wow/addons/adibags/download/2774578/file
-  - https://www.curseforge.com/wow/addons/monkey-speed/download/2780432/file
-  - https://www.curseforge.com/wow/addons/h-h-t-d/download/2777654/file
-  - https://www.curseforge.com/wow/addons/weakauras-2/download/2800669/file
 
 github:
-  # folder-name: organization/reponame
   Lorti-UI-Classic: Chordsy/Lorti-UI-Classic
