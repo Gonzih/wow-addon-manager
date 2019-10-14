@@ -9,7 +9,6 @@ curseforge:
   - atlaslootclassic_maps
 
   - auctionator
-  - bartender4
   - classicauradurations
   - classiccastbars
   - classiclfg
@@ -17,8 +16,6 @@ curseforge:
   - itemtooltipprofessionicons
   - mapfader
   - mik-scrolling-battle-text
-  - omni-cc
-  - quartz
   - questie
   - lorti_ui
   - vendor-price
@@ -29,12 +26,17 @@ curseforge:
   - classicthreatmeter
   - real-mob-health
   - weaponswingtimer
+  - characterstatsclassic
 
 urls:
   # deadly boss mod classic
   - https://www.curseforge.com/wow/addons/deadly-boss-mods/download/2806780/file
   # quartz for classic
   - https://www.curseforge.com/wow/addons/quartz/download/2794707/file
+  # classic omni cc
+  - https://www.curseforge.com/wow/addons/omni-cc/download/2793925/file
+  # bartender for classic
+  - https://www.curseforge.com/wow/addons/bartender4/download/2794702/file
 
 github:
   # folder-name: organization/reponame
