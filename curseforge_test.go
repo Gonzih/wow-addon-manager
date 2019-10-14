@@ -8,13 +8,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// func TestDownloadUrl(t *testing.T) {
-// 	curse := Curse("./addons/tmp", false)
-// 	url, err := curse.getDownloadUrl("atlas")
-// 	require.Nil(t, err)
-// 	require.Regexp(t, regexp.MustCompile("^https://www.curseforge.com/wow/addons/atlas/download/\\d+/file$"), url)
-// }
-
 func TestDownloadFile(t *testing.T) {
 	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, "atlas")
 	curse := Curse("./addons/tmp", false)

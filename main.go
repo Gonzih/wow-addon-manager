@@ -11,13 +11,11 @@ import (
 var addonsDir string
 var debug bool
 var fast bool
-var headless bool
 
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
 	flag.BoolVar(&fast, "fast", false, "Run everything in parallel")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
-	flag.BoolVar(&debug, "headless", false, "Run in headless mode")
 }
 
 type downloadedAddon struct {
