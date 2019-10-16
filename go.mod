@@ -3,7 +3,7 @@ module github.com/Gonzih/wow-addon-manager
 go 1.12
 
 require (
-	github.com/antchfx/htmlquery v1.0.0
+	github.com/antchfx/htmlquery v1.1.0
 	github.com/antchfx/xpath v1.0.0 // indirect
 	github.com/chromedp/cdproto v0.0.0-20191013005325-ffea6b31d538
 	github.com/chromedp/chromedp v0.5.1
