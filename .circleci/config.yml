@@ -1,9 +1,0 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: nixos/nix
-    steps:
-      - checkout
-      - run: nix-env -i gnumake
-      - run: make ci

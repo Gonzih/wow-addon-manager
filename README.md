@@ -1,4 +1,6 @@
-# WoW Addon Updater [![CircleCI](https://circleci.com/gh/Gonzih/wow-addon-manager.svg?style=svg)](https://circleci.com/gh/Gonzih/wow-addon-manager)
+# WoW Addon Updater
+
+![Build](https://github.com/Gonzih/wow-addon-manager/workflows/CI/badge.svg)
 
 Simple go program that synchronizes local World of Warcraft addons from curseforge.
 
