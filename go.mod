@@ -3,8 +3,8 @@ module github.com/Gonzih/wow-addon-manager
 go 1.12
 
 require (
-	github.com/chromedp/cdproto v0.0.0-20200116234248-4da64dd111ac
-	github.com/chromedp/chromedp v0.5.3
+	github.com/chromedp/cdproto v0.0.0-20211126220118-81fa0469ad77
+	github.com/chromedp/chromedp v0.7.6
 	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/google/uuid v1.1.1
 	github.com/stretchr/testify v1.5.1
