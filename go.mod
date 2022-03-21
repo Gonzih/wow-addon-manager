@@ -7,7 +7,7 @@ require (
 	github.com/chromedp/chromedp v0.8.0
 	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/google/uuid v1.3.0
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550 // indirect
 	golang.org/x/net v0.0.0-20191011234655-491137f69257 // indirect
 	golang.org/x/sys v0.0.0-20220209214540-3681064d5158 // indirect
