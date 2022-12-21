@@ -10,7 +10,7 @@ import (
 
 func TestDownloadFile(t *testing.T) {
 	url := fmt.Sprintf(`%s/wow/addons/%s/download`, baseURL, "atlas")
-	curse := Curse("./addons/tmp", false)
+	curse := Curse("./addons/tmp", false, false)
 	path, _, err := curse.DownloadFile(url)
 	defer os.Remove(path)
 	require.Nil(t, err)
