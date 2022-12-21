@@ -2,7 +2,7 @@ build:
 	go build -o wow-addon-manager .
 
 run:
-	go run . --fast
+	go run . --debug
 
 run-slow:
 	go run .
