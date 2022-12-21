@@ -8,14 +8,18 @@ import (
 	"sync"
 )
 
-var addonsDir string
-var debug bool
-var fast bool
+var (
+	addonsDir string
+	debug     bool
+	fast      bool
+	headless  bool
+)
 
 func init() {
 	flag.StringVar(&addonsDir, "addons-dir", "./addons", "Addons directory")
 	flag.BoolVar(&fast, "fast", false, "Run everything in parallel")
 	flag.BoolVar(&debug, "debug", false, "Debug output")
+	flag.BoolVar(&headless, "headless", false, "Run without Chrome GUI")
 }
 
 type downloadedAddon struct {
@@ -40,7 +44,7 @@ func main() {
 	tmpDir := fmt.Sprintf("%s/tmp", addonsDir)
 	_ = os.Mkdir(tmpDir, os.ModePerm)
 
-	curse := Curse(tmpDir, debug)
+	curse := Curse(tmpDir, debug, headless)
 	unpacker := NewUnpacker()
 
 	var wg sync.WaitGroup

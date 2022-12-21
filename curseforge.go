@@ -5,19 +5,21 @@ import "fmt"
 const baseURL = "https://www.curseforge.com"
 
 type CurseForgeDownloader struct {
-	path  string
-	debug bool
+	path     string
+	debug    bool
+	headless bool
 }
 
-func Curse(path string, debug bool) *CurseForgeDownloader {
+func Curse(path string, debug bool, headless bool) *CurseForgeDownloader {
 	return &CurseForgeDownloader{
-		path:  path,
-		debug: debug,
+		path:     path,
+		debug:    debug,
+		headless: headless,
 	}
 }
 
 func (cfd *CurseForgeDownloader) DownloadFile(url string) (string, string, error) {
-	return NewChrome(false).DownloadFileUsingChrome(url, cfd.path)
+	return NewChrome(true).DownloadFileUsingChrome(url, cfd.path)
 }
 
 func FormatURL(name string) string {
